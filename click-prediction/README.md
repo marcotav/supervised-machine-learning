@@ -5,7 +5,7 @@
 <br>
 
 <p align="center">
-  <img src="click1.png" width="120",height="120">
+  <img src="images/click1.png" width="120",height="120">
 </p>                                                                  
 <p align="center">
   <a href="#Problem Statement"> Problem Statement </a> •
@@ -40,6 +40,7 @@ pd.set_option('display.max_rows', None)  # displays all rows
 from IPython.core.interactiveshell import InteractiveShell
 InteractiveShell.ast_node_interactivity = "all" # so we can see the value of multiple statements at once.
 ```
+
 ## Import the data
 
 ```
@@ -50,19 +51,20 @@ test = pd.read_csv('test_click.csv',index_col=0)
 ## Data Dictionary
 
 The meaning of the columns follows:
-- location – ad placement in the website
-- carrier – mobile carrier 
-- device – type of device e.g. phone, tablet or computer 
-- day – weekday user saw the ad
-- hour – hour user saw the ad
-- dimension – size of ad
+- `location` – ad placement in the website
+- `carrier` – mobile carrier 
+- `device` – type of device e.g. phone, tablet or computer 
+- `day` – weekday user saw the ad
+- `hour` – hour user saw the ad
+- `dimension` – size of ad
 
 ## Imbalance
 The `click` column is **heavily** unbalanced. I will correct for this later.
 
+```
 import aux_func_v2 as af
-
 af.s_to_df(train['click'].value_counts())
+```
 
 ### Checking the variance of each feature
 
@@ -70,24 +72,28 @@ Let's quickly study the variance of the features to have an estimate of their im
 
 #### Train set cardinalities
 
+```
 cardin_train = [train[col].nunique() for col in train.columns.tolist()]
 cols = [col for col in train.columns.tolist()]
 d = {k:v for (k, v) in zip(cols,cardin_train)}
 cardinal_train = pd.DataFrame(list(d.items()), columns=['column', 'cardinality'])
 cardinal_train.sort_values('cardinality',ascending=False)
+```
 
 #### Test set cardinalities
-
+```
 cardin_test = [test[col].nunique() for col in test.columns.tolist()]
 cols = [col for col in test.columns.tolist()]
 d = {k:v for (k, v) in zip(cols,cardin_test)}
 cardinal_test = pd.DataFrame(list(d.items()), columns=['column', 'cardinality'])
 cardinal_test.sort_values('cardinality',ascending=False)
+```
 
 #### High and low cardinality in the training data
 
 We can set *arbitrary* thresholds to determine the level of cardinality in the feature categories:
 
+```
 target = 'click'
 cardinal_train_threshold = 33  # our choice
 low_cardinal_train = cardinal_train[cardinal_train['cardinality'] 
@@ -98,9 +104,11 @@ high_cardinal_train = cardinal_train[cardinal_train['cardinality']
 print('Features with low cardinal_train:\n',low_cardinal_train)
 print('')
 print('Features with high cardinal_train:\n',high_cardinal_train)
+```
 
 #### High and low cardinality in the test data
 
+```
 cardinal_test_threshold = 25  # chosen for low_cardinal_set to agree with low_cardinal_train
 low_cardinal_test = cardinal_test[cardinal_test['cardinality'] 
                                   <= cardinal_test_threshold]['column'].tolist()
@@ -109,11 +117,13 @@ high_cardinal_test = cardinal_test[cardinal_test['cardinality']
 print('Features with low cardinal_test:\n',low_cardinal_test)
 print('')
 print('Features with high cardinal_test:\n',high_cardinal_test)
+```
 
 #### Now let's look at the features' variances. 
 
 From the bar plot below we see that `device_type` has non-negligible variance
 
+```
 from matplotlib import pyplot
 import matplotlib.pyplot as plt
 
@@ -124,39 +134,35 @@ for col in low_cardinal_train:
     ax.set_xlabel(col, fontsize=12);
     ax.set_ylabel("Clicks", fontsize=12);
     plt.show();
+```
 
 ### Dropping some features
 
 Notice that some of the features are massively dominated by **just one level**. We will drop those. We have to
 do that for both train and test sets:
 
+```
 cols_to_drop = ['location']
 train_new = train.drop(cols_to_drop,axis=1)
 test_new = test.drop(cols_to_drop,axis=1)
-
-train_new.head()
-test_new.head()
-
-train.shape
-test.shape
-train_new.shape
-test_new.shape
+```
 
 <a id = 'dtypes'></a> 
 ### Data types
 
+```
 train_new.dtypes
 test_new.dtypes
+```
 
 #### Converting some of the integer columns into strings:
 
+```
 cols_to_convert = test_new.columns.tolist()
 for col in cols_to_convert:
     train_new[col] = train_new[col].astype(str)
     test_new[col] = test_new[col].astype(str)
-
-train_new.dtypes
-test_new.dtypes
+```
 
 
 ## Handling missing values
@@ -168,17 +174,19 @@ The only column with missing values is the `domain` column. There are several wa
 
 In our case, the are only a relatively small percentage of `NaNs` in just one column, namely, $\approx$ 13$\%$ of domain values are missing. I opted for values imputation to avoid dropping rows. Future analysis using MICE should improve final results.
 
+```
 train_new['website'] = train_new[['website']].apply(lambda x:x.fillna(x.value_counts().index[0]))  
 train_new.isnull().any()
-
 test_new['website'] = test_new[['website']].apply(lambda x:x.fillna(x.value_counts().index[0]))  
 test_new.isnull().any()
+```
 
 <a id = 'dummies'></a> 
 ### Dummies
 
 We can transform the categories with low cardinality into dummies using hot encoding:
 
+```
 cols_to_keep = ['carrier', 'device', 'day', 'hour', 'dimension']
 low_cardin_train = train_new[cols_to_keep]
 low_cardin_test = test_new[cols_to_keep]
@@ -191,44 +199,32 @@ dummies_test.head()
 
 train_new.to_csv('train_new.csv')
 test_new.to_csv('test_new.csv')
+```
 
 #### Concatenating with the rest of the `DataFrame`:
 
+```
 train_new = pd.concat([train_new[high_cardinal_train + ['click']], dummies_train], axis = 1)
 test_new = pd.concat([test_new[high_cardinal_test], dummies_test], axis = 1)
-
-train_new.head()
-test_new.head()
-train_new.shape
-test_new.shape
-
-# exporting new csv
-train_new.to_csv('train_new.csv')
-test_new.to_csv('test_new.csv')
+```
 
 Now, to treat the columns with high cardinality, we will break them up into percentiles based on the number of impressions (number of rows). 
 
 #### Building up dictionaries for creation of dummy variables
 
+```
 train_new['count'] = 1   # auxiliar column
 test_new['count'] = 1
-
-train_new.head()
-test_new.head()
-
-train_new.shape
-test_new.shape
+```
 
 #### In the next cell, I use `pd.cut` to rename column entries using percentiles
 
-train_new.head()
-
+```
 def series_to_dataframe(s,name,index_list):
     lst = [s.iloc[i] for i in range(s.shape[0])]
     new_df = pd.DataFrame({name: lst})  # transforms list into dataframe
     new_df.index = index_list
     return new_df
-
 def ranges(df1,col):
         df = series_to_dataframe(df1['count'].groupby(df1[col]).sum(),
                              'sum of ads',
@@ -238,71 +234,27 @@ def ranges(df1,col):
         df = pd.concat([df,pd.get_dummies(pd.cut(df['sum of ads'], 3), drop_first = True)],axis=1)
         df.columns = ['sum of ads',col + '_1',col + '_2']
         return df
-
 website_train = ranges(train_new,'website')
 publisher_train = ranges(train_new,'publisher')
-
-website_train.head()
-publisher_train.head()
-
 website_test = ranges(test_new,'website')
 publisher_test = ranges(test_new,'publisher')
-
-website_test.head()
-publisher_test.head()
-
 website_train.reset_index(level=0, inplace=True)
 publisher_train.reset_index(level=0, inplace=True)
 website_test.reset_index(level=0, inplace=True)
 publisher_test.reset_index(level=0, inplace=True)
-
-website_train.head()
-publisher_train.head()
-
-website_test.head()
-publisher_test.head()
-
 website_train.columns = ['website', 'sum of impressions', 'website_1', 'website_2']
 publisher_train.columns = ['publisher', 'sum of impressions', 'publisher_1', 'publisher_2']
-
-website_train.head()
-publisher_train.head()
-
-website_train.shape
-publisher_train.shape
-
 website_test.columns = ['website', 'sum of impressions', 'website_1', 'website_2']
 publisher_test.columns = ['publisher', 'sum of impressions', 'publisher_1', 'publisher_2']
-website_test.head()
-publisher_test.head()
-
 train_new = train_new.merge(website_train, how='left')
 train_new = train_new.drop('website',axis=1).drop('sum of impressions',axis=1)
-train_new.head()
-train_new.shape
-
 train_new = train_new.merge(publisher_train, how='left')
 train_new = train_new.drop('publisher',axis=1).drop('sum of impressions',axis=1)
-train_new.head()
-train_new.shape
-
-train_new.shape
-
-train_new.to_csv('train_1.csv')
-
 test_new = test_new.merge(website_test, how='left')
 test_new = test_new.drop('website',axis=1).drop('sum of impressions',axis=1)
-test_new.head()
-test_new.shape
-
 test_new = test_new.merge(publisher_test, how='left')
 test_new = test_new.drop('publisher',axis=1).drop('sum of impressions',axis=1)
-test_new.head()
-test_new.shape
-
-train_new.to_csv('train_2.csv')
-test_new.to_csv('test_2.csv')
-
+```
 
 ## Imbalanced classes
 
@@ -314,22 +266,19 @@ test_new.to_csv('test_2.csv')
   - Oversampling: boostrap (sample with replacement) the minority class to balance the classes when fitting the model. We can oversample using the SMOTE algorithm (Synthetic Minority Oversampling Technique) 
 - Note that it is crucial that we **evaluate our model on the real data!!**
 
+```
 zeros = train_new[train_new['click'] == 0]
 ones = train_new[train_new['click'] == 1]
 counts = train_new['click'].value_counts()
 proportion = counts[1]/counts[0]
 train_new = ones.append(zeros.sample(frac=proportion))
 #train_new['response'].value_counts()
-
-train_new.head()
-
-#train_new.shape
 #train_new.isnull().any()
-
-train_new.to_csv('train_undersampling.csv')
+```
 
 # Models
 
+```
 from sklearn.model_selection import cross_val_score, StratifiedKFold, train_test_split, GridSearchCV
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, BaggingClassifier
@@ -340,11 +289,12 @@ from sklearn.metrics import confusion_matrix
 %matplotlib inline
 
 X_test = test_new
+```
 
 # Defining ranges for the hyperparameters to be scanned by the grid search
+```
 n_estimators = list(range(20,120,10))
 max_depth = list(range(2, 22, 2)) + [None]
-
 def random_forest_score(df,target_col,test_size,n_estimators,max_depth):
     
     X_train = df.drop(target_col, axis=1)   # predictors
@@ -369,7 +319,8 @@ def random_forest_score(df,target_col,test_size,n_estimators,max_depth):
     return 
 
 random_forest_score(train_new,'click',0.3,n_estimators,max_depth)
-
+```
+```
 X = train_new.drop('click', axis=1)   # predictors
 y = train_new['click']  
 
@@ -433,3 +384,4 @@ def random_forest_score_preds(df,target_col,test_size,n_estimators,max_depth):
     return df_pred
 
 random_forest_score_preds(train_new,'click',0.3,n_estimators,max_depth)
+```
