@@ -7,7 +7,7 @@ This project was done in collaboration with [Corey Girard](https://github.com/co
 <br>
 
 <p align="center">
-  <img src="cellphone.jpg", width = "400">
+  <img src="images/cellphone.jpg", width = "400">
 </p>                                                                  
 <p align="center">
   <a href="#Problem Statement"> Problem Statement </a> •
@@ -140,7 +140,7 @@ df['churn'].value_counts()/df.shape[0]
 has output:
 
 <p align="center">
-  <img src="imbalancechurn.png", width = "150">
+  <img src="images/imbalancechurn.png", width = "150">
 </p> 
 
 
@@ -180,7 +180,7 @@ df_und['churn'].value_counts()
 The output is:
 
 <p align="center">
-  <img src="balancedchurn.png", width = "150">
+  <img src="images/balancedchurn.png", width = "150">
 </p> 
 
 
@@ -242,7 +242,7 @@ df_pred['predictions'].value_counts()/df_pred.shape[0]
 ```
 
 <p align="center">
-  <img src="predictions.png", width = "150">
+  <img src="images/predictions.png", width = "150">
 </p> 
 
 
@@ -284,5 +284,5 @@ pd.crosstab(pd.concat([X_test,y_test],axis=1)['churn'], preds,
 The confusion matrix is:
 
 <p align="center">
-  <img src="cm.png", width = "200">
+  <img src="images/cm.png", width = "200">
 </p> 
