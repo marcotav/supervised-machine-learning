@@ -10,7 +10,7 @@
 ![image title](https://img.shields.io/badge/python-v3.6-green.svg) ![image title](https://img.shields.io/badge/ntlk-v3.2.5-yellow.svg) ![Image title](https://img.shields.io/badge/sklearn-0.19.1-orange.svg) ![Image title](https://img.shields.io/badge/BeautifulSoup-4.6.0-blue.svg) ![Image title](https://img.shields.io/badge/pandas-0.22.0-red.svg) ![Image title](https://img.shields.io/badge/numpy-1.14.2-green.svg) ![Image title](https://img.shields.io/badge/matplotlib-v2.1.2-orange.svg) 
 <br>
 
-## Index
+### Index
 
 * [predicting-the-number-of-comments-on-reddit](#predicting-the-number-of-comments-on-reddit)
 * [tennis-matches-prediction-with-logistic-regression-and-random-forest](#tennis-matches-prediction-with-logistic-regression-and-random-forest)
