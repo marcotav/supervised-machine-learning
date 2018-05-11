@@ -1,13 +1,10 @@
-# Machine Learning Classification Projects
+## Machine Learning Classification Projects
 
 
 <p align="center">
 <img src="https://github.com/marcotav/predicting-the-number-of-comments-on-reddit/blob/master/Reddit-logo.png" 
        width="150" height="150"/>   <img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/tennis/images/ATP_World_Tour.png" width="100" height="100"/> 
 </p> 
-
-
-
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ![image title](https://img.shields.io/badge/python-v3.6-green.svg) ![image title](https://img.shields.io/badge/ntlk-v3.2.5-yellow.svg) ![Image title](https://img.shields.io/badge/sklearn-0.19.1-orange.svg) ![Image title](https://img.shields.io/badge/BeautifulSoup-4.6.0-blue.svg) ![Image title](https://img.shields.io/badge/pandas-0.22.0-red.svg) ![Image title](https://img.shields.io/badge/numpy-1.14.2-green.svg) ![Image title](https://img.shields.io/badge/matplotlib-v2.1.2-orange.svg) 
@@ -35,5 +32,8 @@ This project was done in collaboration with [Corey Girard](https://github.com/co
 ## click-prediction
 
 Borrowing from [here](https://turi.com/learn/gallery/notebooks/click_through_rate_prediction_intro.html):
+
 > Many ads are actually sold on a "pay-per-click" (PPC) basis, meaning the company only pays for ad clicks, not ad views. Thus your optimal approach (as a search engine) is actually to choose an ad based on "expected value", meaning the price of a click times the likelihood that the ad will be clicked [...] In order for you to maximize expected value, you therefore need to accurately predict the likelihood that a given ad will be clicked, also known as "click-through rate" (CTR).
+In this project I will predict the likelihood that a given online ad will be clicked.
+
 In this project I will predict the likelihood that a given online ad will be clicked.
