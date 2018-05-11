@@ -3,8 +3,7 @@
 
 <p align="center">
 <img src="https://github.com/marcotav/predicting-the-number-of-comments-on-reddit/blob/master/Reddit-logo.png" 
-       width="150" height="150"/>   <img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/tennis/images/ATP_World_Tour.png" 
-       width="150" height="150"/>   <img src="churn/images/cellphone.jpg", width = "200"/> <img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/click-prediction/images/click1.png
+       width="150" height="150"/>   <img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/tennis/images/ATP_World_Tour.png" width="100" height="100"/>   <img src="churn/images/cellphone.jpg", width = "200"/> <img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/click-prediction/images/click1.png
 ", width = "200"/>
 </p> 
 
@@ -20,6 +19,7 @@
 * [predicting-the-number-of-comments-on-reddit](#predicting-the-number-of-comments-on-reddit)
 * [tennis-matches-prediction-with-logistic-regression-and-random-forest](#tennis-matches-prediction-with-logistic-regression-and-random-forest)
 * [churn-analysis](#churn-analysis)
+* [click-prediction](#click-prediction)
 
 ## predicting-the-number-of-comments-on-reddit
 
