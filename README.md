@@ -3,10 +3,10 @@
 
 <p align="center">
 <img src="https://github.com/marcotav/predicting-the-number-of-comments-on-reddit/blob/master/Reddit-logo.png" 
-       width="150" height="150"/> <img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/tennis/images/ATP_World_Tour.png" 
-       width="150" height="150"/> 
-
-
+       width="150" height="150"/>   <img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/tennis/images/ATP_World_Tour.png" 
+       width="150" height="150"/>   <img src="churn/images/cellphone.jpg", width = "200"/>
+  
+</p> 
 
 
 
@@ -18,6 +18,7 @@
 
 * [predicting-the-number-of-comments-on-reddit](#predicting-the-number-of-comments-on-reddit)
 * [tennis-matches-prediction-with-logistic-regression-and-random-forest](#tennis-matches-prediction-with-logistic-regression-and-random-forest)
+* [churn-analysis](#churn-analysis)
 
 ## predicting-the-number-of-comments-on-reddit
 
@@ -26,3 +27,14 @@ In this project I determine which characteristics of a post on Reddit contribute
 ## tennis-matches-prediction-with-logistic-regression-and-random-forest 
 
 The goal of the project is to predict the probability that the higher-ranked player will win a tennis match. I will call that a `win`(as opposed to an upset). 
+
+
+# churn-analysis
+
+This project was done in collaboration with [Corey Girard](https://github.com/coreygirard/)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+![image title](https://img.shields.io/badge/work-in%20progress-blue.svg) ![image title](https://img.shields.io/badge/statsmodels-v0.8.0-blue.svg) ![Image title](https://img.shields.io/badge/sklearn-0.19.1-orange.svg) ![Image title](https://img.shields.io/badge/seaborn-v0.8.1-yellow.svg) ![Image title](https://img.shields.io/badge/pandas-0.22.0-red.svg) ![Image title](https://img.shields.io/badge/numpy-1.14.2-green.svg) ![Image title](https://img.shields.io/badge/matplotlib-v2.1.2-orange.svg)
+<br>
+
+  
