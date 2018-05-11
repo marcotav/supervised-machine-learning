@@ -7,10 +7,6 @@
 <p align="center">
   <img src="images/click1.png" width="120",height="120">
 </p>                                                                  
-<p align="center">
-  <a href="#Problem Statement"> Problem Statement </a> •
-  <a href="#Dataset"> Dataset </a> •
-</p>
 
 <a id = 'Problem Statement'></a>
 ## Problem Statement
@@ -276,7 +272,7 @@ train_new = ones.append(zeros.sample(frac=proportion))
 #train_new.isnull().any()
 ```
 
-# Models
+## Models
 
 ```
 from sklearn.model_selection import cross_val_score, StratifiedKFold, train_test_split, GridSearchCV
@@ -291,7 +287,7 @@ from sklearn.metrics import confusion_matrix
 X_test = test_new
 ```
 
-# Defining ranges for the hyperparameters to be scanned by the grid search
+## Defining ranges for the hyperparameters to be scanned by the grid search
 ```
 n_estimators = list(range(20,120,10))
 max_depth = list(range(2, 22, 2)) + [None]
