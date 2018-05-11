@@ -3,8 +3,8 @@
 
 <p align="center">
 <img src="https://github.com/marcotav/predicting-the-number-of-comments-on-reddit/blob/master/Reddit-logo.png" 
-       width="150" height="150"/>   <img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/tennis/images/ATP_World_Tour.png" width="100" height="100"/>   <img src="churn/images/cellphone.jpg", width = "200"/> <img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/click-prediction/images/click1.png
-", width = "200"/>
+       width="150" height="150"/>   <img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/tennis/images/ATP_World_Tour.png" width="100" height="100"/>  <img src="churn/images/cellphone.jpg", width = "200"/> <img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/click-prediction/images/click1.png
+", width = "100"/>
 </p> 
 
 
@@ -33,4 +33,8 @@ The goal of the project is to predict the probability that the higher-ranked pla
 ## churn-analysis
 This project was done in collaboration with [Corey Girard](https://github.com/coreygirard/). A mobile device company is having a major problem with customer retention. Customers switching from one company to another is called churn. Our goal in this analysis is to understand the problem, identify behaviors which are strongly correlated with churn and to devise a solution.
 
-  
+## click-prediction
+
+Borrowing from [here](https://turi.com/learn/gallery/notebooks/click_through_rate_prediction_intro.html):
+> Many ads are actually sold on a "pay-per-click" (PPC) basis, meaning the company only pays for ad clicks, not ad views. Thus your optimal approach (as a search engine) is actually to choose an ad based on "expected value", meaning the price of a click times the likelihood that the ad will be clicked [...] In order for you to maximize expected value, you therefore need to accurately predict the likelihood that a given ad will be clicked, also known as "click-through rate" (CTR).
+In this project I will predict the likelihood that a given online ad will be clicked.
