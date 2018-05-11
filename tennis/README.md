@@ -100,7 +100,7 @@ df_new = df_atp[(df_atp['WRank'] <= 150) & (df_atp['LRank'] <= 150)]
 <br>
 
 <p align="center">
-  <img src="tennis_df.png">
+  <img src="images/tennis_df.png">
 </p>                                   
                                  
 <br> 
