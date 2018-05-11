@@ -5,7 +5,7 @@
 <br>
 
 <p align="center">
-  <img src="ATP_World_Tour.png">
+  <img src="images/ATP_World_Tour.png">
 </p>                                                                  
 <p align="center">
   <a href="#Problem Statement"> Problem Statement </a> •
@@ -125,7 +125,7 @@ series_to_df(df3['win'].value_counts()/df3.shape[0])
 <br>
 
 <p align="center">
-  <img src="imbalance.png">
+  <img src="images/imbalance.png">
 </p>
 
 To correct this problem, and create a balanced dataset via simple undersampling, I used a stratified sampling procedure. 
@@ -145,7 +145,7 @@ df['win'] = y_strat
 The balanced classes become:
 
 <p align="center">
-  <img src="balanced.png">
+  <img src="images/balanced.png">
 </p>
 
 We now define the variables `P1` and `P2` where the former has higher ranking:
@@ -164,7 +164,7 @@ win_by_Surface = pd.crosstab(df.win, df.Surface).apply(lambda x: x/x.sum(), axis
 ```
 
 <p align="center">
-  <img src="surfaces.png">
+  <img src="images/surfaces.png">
 </p>
 
 What about the dependence on rounds? The relation is not very clear but we can clearly see that upsets are unlikely to happen on the semifinals.
@@ -173,7 +173,7 @@ What about the dependence on rounds? The relation is not very clear but we can c
 win_by_round = pd.crosstab(df.win, df.Round).apply(lambda x: x/x.sum(), axis = 0)
 ```
 <p align="center">
-  <img src="rounds.png">
+  <img src="images/rounds.png">
 </p>
 
 
@@ -275,7 +275,7 @@ plt.grid(True)
 <br>
 
 <p align="center">
-  <img src="ROC.png" 
+  <img src="images/ROC.png" 
        width="400" height="300">
 </p>                                                                
 <br> 
@@ -316,7 +316,7 @@ model.fit(X, y)
 <br>
 
 <p align="center">
-  <img src="decisiontree.png">
+  <img src="images/decisiontree.png">
 </p>                                   
                                  
 <br>
@@ -331,7 +331,7 @@ print('CV AUC {}, Average AUC {}'.format(scores, scores.mean()))
 <br>
 
 <p align="center">
-  <img src="cv_score.png",width="250" height="250">
+  <img src="images/cv_score.png",width="250" height="250">
 </p>                                   
                                  
 <br>
@@ -365,7 +365,7 @@ for n_trees in range(1, 100, 10):
 <br>
 
 <p align="center">
-  <img src="rf_features.png",width="280" height="280">
+  <img src="images/rf_features.png",width="280" height="280">
 </p>                                   
                                  
 <br>
