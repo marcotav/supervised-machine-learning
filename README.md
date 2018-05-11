@@ -43,4 +43,6 @@ In this project I will predict the likelihood that a given online ad will be cli
 
 ### analysis-of-opioid-prescription-problem
 
+The increase in overdose fatalities is a well-known problem, and the search for possible solutions is an ongoing effort. This dataset is can be used to detect sources of significant quantities of opiate prescriptions. 
+
 Notebook best viewed using [nbviewer](http://nbviewer.jupyter.org/github/marcotav/analysis-of-opioid-prescription-problem/blob/master/opioid-prescription-problem.ipynb).
