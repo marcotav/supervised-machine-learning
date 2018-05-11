@@ -15,7 +15,12 @@
 ## Index
 
 * [predicting-the-number-of-comments-on-reddit](#predicting-the-number-of-comments-on-reddit)
+* [tennis-matches-prediction-with-logistic-regression-and-random-forest](#tennis-matches-prediction-with-logistic-regression-and-random-forest)
 
 ## predicting-the-number-of-comments-on-reddit
 
 In this project I determine which characteristics of a post on Reddit contribute most to the overall interaction as measured by number of comments.
+
+## tennis-matches-prediction-with-logistic-regression-and-random-forest 
+
+The goal of the project is to predict the probability that the higher-ranked player will win a tennis match. I will call that a `win`(as opposed to an upset). 
