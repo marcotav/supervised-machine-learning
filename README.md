@@ -16,6 +16,7 @@
 * [tennis-matches-prediction-with-logistic-regression-and-random-forest](#tennis-matches-prediction-with-logistic-regression-and-random-forest)
 * [churn-analysis](#churn-analysis)
 * [click-prediction](#click-prediction)
+* [analysis-of-opioid-prescription-problem](#analysis-of-opioid-prescription-problem)
 
 ### predicting-the-number-of-comments-on-reddit
 
@@ -37,3 +38,9 @@ Borrowing from [here](https://turi.com/learn/gallery/notebooks/click_through_rat
 In this project I will predict the likelihood that a given online ad will be clicked.
 
 In this project I will predict the likelihood that a given online ad will be clicked.
+
+
+
+### analysis-of-opioid-prescription-problem
+
+Notebook best viewed using [nbviewer](http://nbviewer.jupyter.org/github/marcotav/analysis-of-opioid-prescription-problem/blob/master/opioid-prescription-problem.ipynb).
