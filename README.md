@@ -25,11 +25,18 @@ In this project I determine which characteristics of a post on Reddit contribute
 The goal of the project is to predict the probability that the higher-ranked player will win a tennis match. I will call that a `win`(as opposed to an upset). 
 
 <p align="center">
-<img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/tennis/images/ATP_World_Tour.png" width="100" height="100"/> 
+<img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/tennis/images/ATP_World_Tour.png" width="150" height="150"/> 
 </p> 
 
 ### churn-analysis
 This project was done in collaboration with [Corey Girard](https://github.com/coreygirard/). A mobile device company is having a major problem with customer retention. Customers switching from one company to another is called churn. Our goal in this analysis is to understand the problem, identify behaviors which are strongly correlated with churn and to devise a solution.
+
+
+<p align="center">
+<img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/churn/images/cellphone.jpg" width="150" height="150"/> 
+</p>
+
+
 
 
 ### click-prediction
@@ -41,10 +48,17 @@ In this project I will predict the likelihood that a given online ad will be cli
 
 In this project I will predict the likelihood that a given online ad will be clicked.
 
-
+<p align="center">
+<img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/churn/images/cellphone.jpg" width="150" height="150"/> 
+</p>
 
 ### analysis-of-opioid-prescription-problem
 
 The increase in overdose fatalities is a well-known problem, and the search for possible solutions is an ongoing effort. This dataset is can be used to detect sources of significant quantities of opiate prescriptions. 
 
 Notebook best viewed using [nbviewer](http://nbviewer.jupyter.org/github/marcotav/analysis-of-opioid-prescription-problem/blob/master/opioid-prescription-problem.ipynb).
+
+
+<p align="center">
+<img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/churn/images/cellphone.jpg" width="150" height="150"/> 
+</p>
