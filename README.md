@@ -49,8 +49,8 @@ In this project I will predict the likelihood that a given online ad will be cli
 In this project I will predict the likelihood that a given online ad will be clicked.
 
 <p align="center">
-<img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/churn/images/cellphone.jpg" width="150" height="150"/> 
-</p>
+<img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/click-prediction/images/click1.png" width="150" height="150"/>  
+</p> 
 
 ### analysis-of-opioid-prescription-problem
 
@@ -60,5 +60,6 @@ Notebook best viewed using [nbviewer](http://nbviewer.jupyter.org/github/marcota
 
 
 <p align="center">
-<img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/churn/images/cellphone.jpg" width="150" height="150"/> 
-</p>
+<img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/analysis-of-opioid-prescription-problem/images/opioids.png" width="150" height="150"/>  
+</p> 
+
