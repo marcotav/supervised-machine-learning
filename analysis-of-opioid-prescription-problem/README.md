@@ -2,7 +2,7 @@
 <br>
 <br>
 <p align="center">
-  <img src="opioids.png", width = "180">
+  <img src="images/opioids.png", width = "180">
 </p>
 <br>
 
@@ -40,7 +40,6 @@ The data consists of the following characteristics for each prescriber:
 
 <a id = 'g'></a>
 ## Project Goal
-
 
 The increase in overdose fatalities is a well-known problem, and the search for possible solutions is an ongoing effort. This dataset is can be used to detect sources of significant quantities of opiate prescriptions. 
 
