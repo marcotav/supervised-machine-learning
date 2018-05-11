@@ -49,7 +49,7 @@ In this project I will predict the likelihood that a given online ad will be cli
 In this project I will predict the likelihood that a given online ad will be clicked.
 
 <p align="center">
-<img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/click-prediction/images/click1.png" width="150" height="150"/>  
+<img src="https://github.com/marcotav/machine-learning-classification-projects/blob/master/click-prediction/images/click1.png" width="100">  
 </p> 
 
 ### analysis-of-opioid-prescription-problem
