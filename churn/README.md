@@ -115,75 +115,11 @@ scaler = StandardScaler()
 X[cols] = scaler.fit_transform(X[cols])
 X = X[cols]
 ```
-<a id = 'rf'></a>
-### Imbalanced classes
-
-The `churn` class is imbalanced. The following cell
-
-```
-df['churn'].value_counts()/df.shape[0]
-```
-has output:
-
-<p align="center">
-  <img src="images/imbalancechurn.png", width = "150">
-</p> 
-
-
-We can account for imbalanced classes using:
-- Undersampling: randomly sample the majority class, artificially balancing the classes when fitting the model
-- Oversampling: boostrap (sample with replacement) the minority class to balance the classes when fitting the model. We can oversample using the SMOTE algorithm (Synthetic Minority Oversampling Technique)
-
-Note that it is crucial that we evaluate our model **on the real data**.
-
-I will use the usual undersampling method creating a 50/50 ratio. I will choose randomly the elements of the majority class (the random sample size will naturally be equal to the size of the minority class).
-
-To do that let us concatenate the features and target again:
-
-```df_scaled = pd.concat([X,y],axis=1)
-```
-
-The number of churns, the corresponding row indexes and the non-churn rows indices are:
-
-```
-num_churns = len(df_scaled[df_scaled['churn'] == 1])
-churns_indices = np.array(df_scaled[df_scaled['churn'] == 1].index)
-non_churn_indices = df_scaled[df_scaled['churn'] == 0].index
-```
-
-Randomly selecting from the majority, joining indices and undersampling the data we have:
-
-```
-random_non_churn_indices = np.random.choice(non_churn_indices, num_churns, replace = False)
-random_non_churn_indices = np.array(random_non_churn_indices)
-undersample_ind = np.concatenate([churns_indices,random_non_churn_indices])
-undersample = df_scaled.iloc[undersample_ind,:]
-X_und = undersample.ix[:, undersample.columns != 'churn']
-y_und = undersample.ix[:, undersample.columns == 'churn']
-df_und = pd.concat([X_und,y_und],axis=1)
-df_und['churn'].value_counts()
-```
-The output is:
-
-<p align="center">
-  <img src="images/balancedchurn.png", width = "150">
-</p> 
-
-
-
-Redefining our variables
-
-```
-X = X_und
-y = y_und
-y = y.churn
-```
-
-we can build our models.
-
+We can now build our models.
 
 <a id = 'rf'></a>
-## Building a random forest classifier using `GridSearch` to optimize hyperparameters
+## Building models and using `GridSearch` to optimize hyperparameters
+
 
 ### Finding best hyperparameters
 
