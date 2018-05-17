@@ -49,73 +49,57 @@ import numpy as np
 import matplotlib.pyplot as plt
 %matplotlib inline
 ```
-
-
-
-
-<a id = 'dh'></a>
-## Data Handling and Feature Engineering
-
 ### Reading the data
-
+We first read the data:
 ```
 df = pd.read_csv("data.csv")
 ```
+<p align="center">
+  <img src="images/df_churn_new.png", width = "950">
+</p> 
 
-### Convert binary strings to boolean ints
+<a id = 'dh'></a>
+## Data Handling and Feature Engineering
+In this section the following steps are taken:
+- Conversion of strings into booleans 
+- Conversion of booleans to integers
+- Converting the states column into dummy columns
+- Creation of several new features (feature engineering)
 
+The commented code follows:
 ```
+# convert binary strings to boolean ints
 df['international_plan'] = df.international_plan.replace({'Yes': 1, 'No': 0})
 df['voice_mail_plan'] = df.voice_mail_plan.replace({'Yes': 1, 'No': 0})
-```
-
-### Convert booleans to boolean ints
-```
+#convert booleans to boolean ints
 df['churn'] = df.churn.replace({True: 1, False: 0})
-```
-### Handle state dummies
-
-```
+# handle state dummies
 state_dummies = pd.get_dummies(df.state)
 state_dummies.columns = ['state_'+c.lower() for c in state_dummies.columns.values]
 df.drop('state', axis='columns', inplace=True)
 df = pd.concat([df, state_dummies], axis='columns')
-```
-
-### Handle area code dummies
-
-```
+# handle area code dummies
 area_dummies = pd.get_dummies(df.area_code)
 area_dummies.columns = ['area_code_'+str(c) for c in area_dummies.columns.values]
 df.drop('area_code', axis='columns', inplace=True)
 df = pd.concat([df, area_dummies], axis='columns')
-```
-
-### Feature Engineering
-```
+# feature Engineering
 df['total_minutes'] = df.total_day_minutes + df.total_eve_minutes + df.total_intl_minutes
 df['total_calls'] = df.total_day_calls + df.total_eve_calls + df.total_intl_calls
 df['total_charge'] = df.total_day_charge + df.total_eve_charge + df.total_intl_charge
-
 df['avg_day_rate_by_minute'] = df.total_day_charge / df.total_day_minutes
 df['avg_day_rate_by_call'] = df.total_day_charge / df.total_day_calls
-
 df['avg_eve_rate_by_minute'] = df.total_eve_charge / df.total_eve_minutes
 df['avg_eve_rate_by_call'] = df.total_eve_charge / df.total_eve_calls
-
 df['avg_night_rate_by_minute'] = df.total_night_charge / df.total_night_minutes
 df['avg_night_rate_by_call'] = df.total_night_charge / df.total_night_calls
-
 df['avg_intl_rate_by_minute'] = df.total_intl_charge / df.total_intl_minutes
 df['avg_intl_rate_by_call'] = df.total_intl_charge / df.total_intl_calls
 df.fillna(value=0.0, inplace=True) # three people made no international calls, apparently
-
 df['pct_calls_left_voicemail'] = df.number_vmail_messages / df.total_calls
-
 df['ratio_minutes_day_eve'] = df.total_day_minutes / df.total_eve_minutes
 df['ratio_minutes_day_night'] = df.total_day_minutes / df.total_night_minutes
 df['ratio_minutes_eve_night'] = df.total_eve_minutes / df.total_night_minutes
-
 df['ratio_calls_day_eve'] = df.total_day_calls / df.total_eve_calls
 df['ratio_calls_day_night'] = df.total_day_calls / df.total_night_calls
 df['ratio_calls_eve_night'] = df.total_eve_calls / df.total_night_calls
