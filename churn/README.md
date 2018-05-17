@@ -1,4 +1,4 @@
-# Churn Analysis
+## Churn Analysis
 
 This project was done in collaboration with [Corey Girard](https://github.com/coreygirard/)
 
@@ -19,7 +19,17 @@ This project was done in collaboration with [Corey Girard](https://github.com/co
 
 <a id = 'Problem Statement'></a>
 ## Problem Statement
-A mobile device company is having a major problem with customer retention. Customers switching from one company to another is called *churn*. Our goal in this analysis is to understand the problem, identify behaviors which are strongly correlated with churn and to devise a solution.
+From Wikipedia, 
+
+> Churn rate is a measure of the number of individuals or items moving out of a collective group over a specific period. It is one of two primary factors that determine the steady-state level of customers a business will support [...] It is an important factor for any business with a subscriber-based service model, [such as] mobile telephone networks.
+
+Our goal in this analysis was to predict the churn rate from a mobile phone company based on customer attributes including:
+- Area code
+- Call duration at different hours
+- Charges
+- Account length
+
+See [this website](http://blog.yhat.com/posts/predicting-customer-churn-with-sklearn.html) for a similar analysis.
 
 <a id = 'mods'></a>
 ## Importing modules
@@ -32,6 +42,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 %matplotlib inline
 ```
+
+
+
+
 <a id = 'dh'></a>
 ## Data Handling and Feature Engineering
 
