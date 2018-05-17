@@ -241,7 +241,7 @@ df_pred['predictions'].value_counts()/df_pred.shape[0]
 ```
 
 <p align="center">
-  <img src="images/predictions.png", width = "150">
+  <img src="images/predictions.png", width = "130">
 </p> 
 
 
