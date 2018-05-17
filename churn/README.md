@@ -18,6 +18,7 @@ This project was done in collaboration with [Corey Girard](https://github.com/co
   <a href="#Xy"> Features and target </a> •
   <a href="#pp"> Using `pandas-profiling` and rejecting variables with correlations above 0.9 </a> •
   <a href="#scale">  Scaling </a> •
+  <a href="#mc">  Model Comparison </a> •
   <a href="#rf"> Building a random forest classifier using GridSearch to optimize hyperparameters </a>
 </p>
 
@@ -117,8 +118,8 @@ X = X[cols]
 ```
 We can now build our models.
 
-<a id = 'rf'></a>
-## Building models
+<a id = 'mc'></a>
+## Model Comparison
 
 We can write a for loop that does the following:
 - Iterates over a list of models, in this case GaussianNB, KNeighborsClassifier and LinearSVC
@@ -127,17 +128,25 @@ We can write a for loop that does the following:
 - Calculates the `f1_score` and cross-validation score 
 - Build a dataframe with that information
 
+The code will also print out the confusion matrix from which "recall" and "precision" can be calculated:
+- When a consumer churns, how often does my classifier predict that to happen. This is the "recall". 
+- When the model predicts a churn, how often does that user actually churns? This is the "precision"
+
 ```
 X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y,
                             test_size=0.25, random_state=0)
 
-models = [LogisticRegression, GaussianNB, KNeighborsClassifier, LinearSVC]
+models = [LogisticRegression, GaussianNB, 
+          KNeighborsClassifier, LinearSVC]
 
 lst = []
 for model in models:
     clf = model().fit(X_train, y_train)
     y_pred = clf.predict(X_test)
-    lst.append([i for i in (model.__name__, round(metrics.f1_score(y_test, y_pred, average="macro"),3))])
+    lst.append([i for i in (model.__name__, 
+                            round(metrics.f1_score(y_test, 
+                                                   y_pred, 
+                                                   average="macro"),3))])
 df = pd.DataFrame(lst, columns=['Model','f1_score'])
 
 lst_av_cross_val_scores = []
@@ -152,14 +161,38 @@ model_names = [model.__name__ for model in models]
 
 df1 = pd.DataFrame(list(zip(model_names, lst_av_cross_val_scores)))
 df1.columns = ['Model','Average Cross-Validation']
-df_all = pd.concat([df1,df['f1_score']],axis=1)
+df_all = pd.concat([df1,df['f1_score']],axis=1) 
 ```
 <p align="center">
   <img src="images/model_comparison.png", width = "400">
 </p>
 
+The confusion matrices are obtained using:
 
+```
+models_names = ['LogisticRegression', 'GaussianNB', 'KNeighborsClassifier', 'LinearSVC']
+i=0
+for preds in y_pred_lst:
+    print('Confusion Matrix for:',models_names[i])
+    i +=1
+    print('')
+    cm = pd.crosstab(pd.concat([X_test,y_test],axis=1)['churn'], preds, 
+            rownames=['Actual Values'], colnames=['Predicted Values'])
+    recall = round(cm.iloc[1,1]/(cm.iloc[1,0]+cm.iloc[1,1]),3)
+    precision = round(cm.iloc[1,1]/(cm.iloc[0,1]+cm.iloc[1,1]),3)
+    cm
+    print('Recall for {} is:'.format(models_names[i-1]),recall)
+    print('Precision for {} is:'.format(models_names[i-1]),precision,'\n')
+    print('------------------------------------------------------------ \n')
+```
+The output is:
+
+
+
+<a id = 'rf'></a>
 ### Finding best hyperparameters
+As a complement let us use a Random Forest Classifier with GridSearch for hyperparameter optimization
+
 
 ```
 n_estimators = list(range(20,160,10))
