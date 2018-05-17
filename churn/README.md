@@ -118,7 +118,45 @@ X = X[cols]
 We can now build our models.
 
 <a id = 'rf'></a>
-## Building models and using `GridSearch` to optimize hyperparameters
+## Building models
+
+We can write a for loop that does the following:
+- Iterates over a list of models, in this case GaussianNB, KNeighborsClassifier and LinearSVC
+- Trains each model using the training dataset X_train and y_train
+- Predicts the target using the test features X_test
+- Calculates the `f1_score` and cross-validation score 
+- Build a dataframe with that information
+
+```
+X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y,
+                            test_size=0.25, random_state=0)
+
+models = [LogisticRegression, GaussianNB, KNeighborsClassifier, LinearSVC]
+
+lst = []
+for model in models:
+    clf = model().fit(X_train, y_train)
+    y_pred = clf.predict(X_test)
+    lst.append([i for i in (model.__name__, round(metrics.f1_score(y_test, y_pred, average="macro"),3))])
+df = pd.DataFrame(lst, columns=['Model','f1_score'])
+
+lst_av_cross_val_scores = []
+
+for model in models:
+    clf = model()
+    cross_val_scores = (model.__name__, cross_val_score(clf, X, y, cv=5))
+    av_cross_val_scores = list(cross_val_scores)[1].mean()
+    lst_av_cross_val_scores.append(round(av_cross_val_scores,3))
+
+model_names = [model.__name__ for model in models]
+
+df1 = pd.DataFrame(list(zip(model_names, lst_av_cross_val_scores)))
+df1.columns = ['Model','Average Cross-Validation']
+df_all = pd.concat([df1,df['f1_score']],axis=1)
+```
+<p align="center">
+  <img src="images/model_comparison.png", width = "400">
+</p>
 
 
 ### Finding best hyperparameters
