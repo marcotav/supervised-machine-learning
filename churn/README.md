@@ -167,7 +167,9 @@ df_all = pd.concat([df1,df['f1_score']],axis=1)
   <img src="images/model_comparison.png", width = "400">
 </p>
 
-The confusion matrices are obtained using:
+If we use cross-validation as our metric, we see that the logistic regression has the best performance. 
+
+Now we will look at confusion matrices. These are obtained as follows:
 
 ```
 models_names = ['LogisticRegression', 'GaussianNB', 'KNeighborsClassifier', 'LinearSVC']
@@ -191,6 +193,7 @@ The output is:
   <img src="images/cms2.png", width = "600">
 </p> 
 
+The highest recall is from `GaussianNB` and the highest precision from `KNeighborsClassifier`.
 
 <a id = 'rf'></a>
 ### Finding best hyperparameters
@@ -262,23 +265,11 @@ The output is:
 'Random Forest Score is :0.774 ± 0.054'
 ```
 
-### Confusion Matrix
+For the random forest, the recall and precision found are:
 
 ```
-X_train, X_test, y_train, y_test = train_test_split(X, 
-                                                        y, test_size = 0.3, random_state=42) 
-
-best_rf_gs = RandomForestClassifier(n_estimators=n_estimators_best,
-                                max_depth=max_depth_best)
-
-best_rf_gs.fit(X_train,y_train)  # fitting the best model
-best_rf_score = best_rf_gs.score(X_test,y_test) 
-preds = best_rf_gs.predict(X_test)
-pd.crosstab(pd.concat([X_test,y_test],axis=1)['churn'], preds, 
-            rownames=['Actual Values'], colnames=['Predicted Values'])
+recall: 0.286
+precision 0.727
 ```
-The confusion matrix is:
 
-<p align="center">
-  <img src="images/cm.png", width = "200">
-</p> 
+The precision of this `RandomForestClassifier` is the highest one among the five models investigated.
