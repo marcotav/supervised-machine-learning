@@ -187,6 +187,9 @@ for preds in y_pred_lst:
 ```
 The output is:
 
+<p align="center">
+  <img src="images/cms.png", width = "600">
+</p> 
 
 
 <a id = 'rf'></a>
