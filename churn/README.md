@@ -13,8 +13,11 @@ This project was done in collaboration with [Corey Girard](https://github.com/co
 <p align="center">
   <a href="#goals"> Goals </a> •
   <a href="#importance"> Why this is important? </a> •
-  <a href="#mods"> Importing modules </a> 
-  <a href="#dh"> Data Handling and Feature Engineering </a>
+  <a href="#mods"> Importing modules and reading the data </a> •
+  <a href="#dh"> Data Handling and Feature Engineering </a> •
+  <a href="#Xy"> Features and target </a> •
+  <a href="#pp"> Using `pandas-profiling` and rejecting variables with correlations above 0.9 </a> •
+  <a href="#scale">  Scaling </a> •
   <a href="#rf"> Building a random forest classifier using GridSearch to optimize hyperparameters </a>
 </p>
 
@@ -39,7 +42,7 @@ See [this website](http://blog.yhat.com/posts/predicting-customer-churn-with-skl
 It is a well-known fact that in several businesses (particularly the ones involving subscriptions), the acquisition of new customers costs much more than the retention of existing ones. A thorough analysis of what causes churn-rates and how to predict them can be used to build efficient customer retention strategies.
 
 <a id = 'mods'></a>
-## Importing modules
+## Importing modules and reading the data
 ```
 from sklearn.model_selection import cross_val_score, train_test_split, GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
@@ -49,8 +52,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 %matplotlib inline
 ```
-### Reading the data
-We first read the data:
+Reading the data:
 ```
 df = pd.read_csv("data.csv")
 ```
@@ -66,66 +68,45 @@ In this section the following steps are taken:
 - Converting the states column into dummy columns
 - Creation of several new features (feature engineering)
 
-The commented code follows:
+The commented code follows (most of the lines were ommited for brevity):
 ```
 # convert binary strings to boolean ints
 df['international_plan'] = df.international_plan.replace({'Yes': 1, 'No': 0})
-df['voice_mail_plan'] = df.voice_mail_plan.replace({'Yes': 1, 'No': 0})
 #convert booleans to boolean ints
 df['churn'] = df.churn.replace({True: 1, False: 0})
-# handle state dummies
+# handle state and area code dummies
 state_dummies = pd.get_dummies(df.state)
 state_dummies.columns = ['state_'+c.lower() for c in state_dummies.columns.values]
 df.drop('state', axis='columns', inplace=True)
 df = pd.concat([df, state_dummies], axis='columns')
-# handle area code dummies
 area_dummies = pd.get_dummies(df.area_code)
 area_dummies.columns = ['area_code_'+str(c) for c in area_dummies.columns.values]
 df.drop('area_code', axis='columns', inplace=True)
 df = pd.concat([df, area_dummies], axis='columns')
-# feature Engineering
+# feature engineering
 df['total_minutes'] = df.total_day_minutes + df.total_eve_minutes + df.total_intl_minutes
 df['total_calls'] = df.total_day_calls + df.total_eve_calls + df.total_intl_calls
-df['total_charge'] = df.total_day_charge + df.total_eve_charge + df.total_intl_charge
-df['avg_day_rate_by_minute'] = df.total_day_charge / df.total_day_minutes
-df['avg_day_rate_by_call'] = df.total_day_charge / df.total_day_calls
-df['avg_eve_rate_by_minute'] = df.total_eve_charge / df.total_eve_minutes
-df['avg_eve_rate_by_call'] = df.total_eve_charge / df.total_eve_calls
-df['avg_night_rate_by_minute'] = df.total_night_charge / df.total_night_minutes
-df['avg_night_rate_by_call'] = df.total_night_charge / df.total_night_calls
-df['avg_intl_rate_by_minute'] = df.total_intl_charge / df.total_intl_minutes
-df['avg_intl_rate_by_call'] = df.total_intl_charge / df.total_intl_calls
-df.fillna(value=0.0, inplace=True) # three people made no international calls, apparently
-df['pct_calls_left_voicemail'] = df.number_vmail_messages / df.total_calls
-df['ratio_minutes_day_eve'] = df.total_day_minutes / df.total_eve_minutes
-df['ratio_minutes_day_night'] = df.total_day_minutes / df.total_night_minutes
-df['ratio_minutes_eve_night'] = df.total_eve_minutes / df.total_night_minutes
-df['ratio_calls_day_eve'] = df.total_day_calls / df.total_eve_calls
-df['ratio_calls_day_night'] = df.total_day_calls / df.total_night_calls
-df['ratio_calls_eve_night'] = df.total_eve_calls / df.total_night_calls
 ```
 
+<a id = 'Xy'></a>
 ### Features and target
+Defining the features matrix and the target (the churn):
 ```
 X = df[[c for c in df.columns if c != 'churn']]
 y = df.churn
 ```
 
-The package `pandas-profiling` contains a method `get_rejected_variables(threshold)` which identifies variables with correlation higher than a threshold.
+<a id = 'pp'></a>
+### Using `pandas-profiling` and rejecting variables with correlations above 0.9
 
-### Using pandas profiling
+The package `pandas-profiling` contains a method `get_rejected_variables(threshold)` which identifies variables with correlation higher than a threshold.
 ```
-!pip install pandas-profiling
 import pandas_profiling
 profile = pandas_profiling.ProfileReport(X)
-```
-
-### Rejecting variables with correlations above 0.9
-```
 rejected_variables = profile.get_rejected_variables(threshold=0.9)
 X = X.drop(rejected_variables,axis=1)
 ```
-
+<a id = 'scale'></a>
 ### Scaling
 ```
 from sklearn.preprocessing import StandardScaler
