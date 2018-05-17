@@ -188,7 +188,7 @@ for preds in y_pred_lst:
 The output is:
 
 <p align="center">
-  <img src="images/cms1.png", width = "600">
+  <img src="images/cms2.png", width = "600">
 </p> 
 
 
