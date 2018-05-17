@@ -167,7 +167,7 @@ df_all = pd.concat([df1,df['f1_score']],axis=1)
   <img src="images/model_comparison.png", width = "400">
 </p>
 
-If we use cross-validation as our metric, we see that the logistic regression has the best performance. 
+If we use cross-validation as our metric, we see that the `KNeighborsClassifier` has the best performance. 
 
 Now we will look at confusion matrices. These are obtained as follows:
 
@@ -272,4 +272,4 @@ recall: 0.286
 precision 0.727
 ```
 
-The precision of this `RandomForestClassifier` is the highest one among the five models investigated.
+Both cross-validation score and precision of our `RandomForestClassifier` is the highest among the five models investigated.
