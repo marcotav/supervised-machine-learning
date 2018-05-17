@@ -11,14 +11,16 @@ This project was done in collaboration with [Corey Girard](https://github.com/co
 </p>                                                                  
 <p align="center">
   <a href="#Problem Statement"> Problem Statement </a> •
+  <a href="#goals"> Goals </a> •
+  <a href="#importance"> Why this is important? </a> •
   <a href="#mods"> Importing modules </a> 
   <a href="#dh"> Data Handling and Feature Engineering </a>
   <a href="#rf"> Building a random forest classifier using GridSearch to optimize hyperparameters </a>
 </p>
 
 
-<a id = 'Problem Statement'></a>
-## Problem Statement
+<a id = 'goals'></a>
+### Goals
 From Wikipedia, 
 
 > Churn rate is a measure of the number of individuals or items moving out of a collective group over a specific period. It is one of two primary factors that determine the steady-state level of customers a business will support [...] It is an important factor for any business with a subscriber-based service model, [such as] mobile telephone networks.
@@ -30,6 +32,11 @@ Our goal in this analysis was to predict the churn rate from a mobile phone comp
 - Account length
 
 See [this website](http://blog.yhat.com/posts/predicting-customer-churn-with-sklearn.html) for a similar analysis.
+
+<a id = 'importance'></a>
+### Why this is important? 
+
+It is a well-known fact that in several businesses (particularly the ones involving subscriptions), the acquisition of new customers costs much more than the retention of existing ones. A thorough analysis of what causes churn-rates and how to predict them can be used to build efficient customer retention strategies.
 
 <a id = 'mods'></a>
 ## Importing modules
