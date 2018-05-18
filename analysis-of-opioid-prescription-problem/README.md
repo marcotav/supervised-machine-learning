@@ -1,4 +1,14 @@
-## U.S. Opiate Prescriptions/Overdoses  ![image title](https://img.shields.io/badge/work-in%20progress-blue.svg) ![image title](https://img.shields.io/badge/python-v3.6-green.svg) ![Image title](https://img.shields.io/badge/sklearn-0.19.1-orange.svg)
+## U.S. Opiate Prescriptions/Overdoses [[view code]](http://nbviewer.jupyter.org/github/marcotav/machine-learning-classification-projects/blob/master/analysis-of-opioid-prescription-problem/notebooks/opioid-prescription-problem.ipynb)
+![image title](https://img.shields.io/badge/work-in%20progress-blue.svg) ![image title](https://img.shields.io/badge/python-v3.6-green.svg) ![Image title](https://img.shields.io/badge/sklearn-0.19.1-orange.svg)
+
+
+**The code is available [here](http://nbviewer.jupyter.org/github/marcotav/machine-learning-classification-projects/blob/master/analysis-of-opioid-prescription-problem/notebooks/opioid-prescription-problem.ipynb) or by clicking on the.**
+ 
+
+
+
+
+
 <br>
 <br>
 <p align="center">
