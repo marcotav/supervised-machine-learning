@@ -8,6 +8,12 @@
        width="120" height="120"/>  
 </p> 
 
+<br/>
+<p align="center">
+  <img src='https://github.com/marcotav/machine-learning-regression-models/blob/master/retail/images/liquor.jpeg' width="200">
+</p>
+<br>
+
 <p align="center">
   <a href="#nb"> Notebooks and descriptions </a>  •
   <a href="#ci"> Contact Information </a> 
