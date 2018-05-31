@@ -1,14 +1,19 @@
 <h1 align="center">Multivariate Time Series</h1>
 
 <div align="center">
-  :steam_locomotive::train::train::train::train::train:
+  <img src='images/mmm_image.png' width="300">
 </div>
 <div align="center">
-  <strong>Fun functional programming</strong>
+  <strong>Applied to Marketing</strong>
 </div>
 <div align="center">
-  A <code>4kb</code> framework for creating sturdy frontend applications
+  A tutorial on multivariate linear models for time series analysis.
 </div>
+
+
+
+
+
 
 <br />
 
