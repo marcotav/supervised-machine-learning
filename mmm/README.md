@@ -4,10 +4,10 @@
   <img src='images/mmm_image.png' width="300">
 </div>
 <div align="center">
-  <strong>Applied to Marketing</strong>
+  <strong> Tutorial </strong>
 </div>
 <div align="center">
-  A tutorial on multivariate linear models for time series analysis.
+  A tutorial on multivariate linear models for time series analysis applied to marketing.
 </div>
 
 
